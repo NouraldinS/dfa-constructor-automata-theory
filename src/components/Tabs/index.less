@@ -1,0 +1,45 @@
+@import "../../index.less";
+
+.tabs {
+  width: 400px;
+  height: 55px;
+  display: block;
+  background: transparent;
+  // display: flex;
+  // justify-content: center;
+  // align-items: flex-start;
+  margin: 0 auto;
+  position: relative;
+
+  & .tab {
+    width: 175px;
+    height: 50px;
+    background: @DarkGreen;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 50px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: @White;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    font-size: 16px;
+    transition: all .3s;
+    &.active {
+      background: @LightGreen;
+      color: @Black;
+      transition: all .3s;
+      font-size: 18px;
+    }
+    &:nth-child(1) {
+      left: 0;
+    }
+    &:nth-child(2) {
+      left: 300px;
+    }
+    &:nth-child(3) {
+      left: 150px;
+    }
+  }
+}

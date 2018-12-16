@@ -1,0 +1,39 @@
+@import "../../index.less";
+
+@StateWrapperDim: 70px;
+@StateDim: 50px;
+@TransitionAdderDim: 20px;
+
+.state-wrapper {
+  .centerify;
+  position: absolute;
+  width: @StateWrapperDim;
+  height: @StateWrapperDim;
+  cursor: pointer;
+
+  & .state {
+    .centerify;
+    position: absolute;
+    width: @StateDim;
+    height: @StateDim;
+    box-shadow: 0 0 2px @White;
+    background-color: @LightGreen;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 500;
+    &:hover {
+      & .add-transition { visibility: visible;}
+    }
+    & .add-transition {
+      .centerify;
+      position: absolute;
+      visibility: hidden;
+      top: -8px;
+      width: @TransitionAdderDim;
+      height: @TransitionAdderDim;
+      background-color: @DarkGreen;
+      border-radius: 50%;
+      right: calc(50% - @TransitionAdderDim/2);
+    }
+  }
+}
