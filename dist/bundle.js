@@ -1112,9 +1112,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getCharacterAtIndex; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getRelativeLeftAndTop; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getQuarter; });
+/* unused harmony export getCharacterAtIndex */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getRelativeLeftAndTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getQuarter; });
 var getCharacterAtIndex = function getCharacterAtIndex(character, index) {
   return character + "".concat(index).split('').map(function (digit) {
     return String.fromCharCode(8320 + parseInt(digit));
@@ -24463,10 +24463,6 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__index_less__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -24490,90 +24486,104 @@ var DFA = function DFA(props) {
 
   var states = props.states,
       currentAction = props.currentAction;
-  var spaceFunctions = {
-    onClick: function onClick(clickEvent) {
-      if (currentAction === 'drawing_transition') return;
-      var createState = props.createState;
-      var numberOfStates = states.length;
+  Object(__WEBPACK_IMPORTED_MODULE_0_react__["useEffect"])(function () {
+    var canvas = document.getElementById('dfa-constructor');
+    var ctx = canvas.getContext('2d');
+    ctx.canvas.width = window.innerWidth * 0.95;
+    ctx.canvas.height = 900;
 
-      var _getRelativeLeftAndTo = Object(__WEBPACK_IMPORTED_MODULE_4__helpers__["c" /* getRelativeLeftAndTop */])(clickEvent, 35),
-          _getRelativeLeftAndTo2 = _slicedToArray(_getRelativeLeftAndTo, 4),
-          left = _getRelativeLeftAndTo2[0],
-          top = _getRelativeLeftAndTo2[1],
-          cx = _getRelativeLeftAndTo2[2],
-          cy = _getRelativeLeftAndTo2[3];
+    var drawState = function drawState(_ref) {
+      var left = _ref.left,
+          top = _ref.top;
+      var x = ctx.canvas.width * left;
+      var y = ctx.canvas.height * top;
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = '#20A0FF';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#FFF';
+      ctx.stroke();
+      ctx.shadowColor = 'rgba(0, 0, 0, .16)';
+      ctx.shadowBlur = 3;
+      ctx.shadowOffsetX = 2;
+    };
 
-      var newStateObject = {
-        left: left,
-        top: top,
-        center: {
-          x: cx,
-          y: cy
-        },
-        id: __WEBPACK_IMPORTED_MODULE_2_uuid_v4___default()(),
-        symbol: Object(__WEBPACK_IMPORTED_MODULE_4__helpers__["a" /* getCharacterAtIndex */])('A', numberOfStates)
-      };
-      createState(newStateObject);
-    },
-    onMouseMove: function onMouseMove(mouseMoveEvent) {
-      if (currentAction === 'drawing_transition') {
-        console.log('tempTransition', tempTransition);
-
-        var _getRelativeLeftAndTo3 = Object(__WEBPACK_IMPORTED_MODULE_4__helpers__["c" /* getRelativeLeftAndTop */])(mouseMoveEvent),
-            _getRelativeLeftAndTo4 = _slicedToArray(_getRelativeLeftAndTo3, 5),
-            left = _getRelativeLeftAndTo4[0],
-            top = _getRelativeLeftAndTo4[1],
-            width = _getRelativeLeftAndTo4[4];
-
-        setTempTransition(_objectSpread({}, tempTransition, {
-          end: {
-            x: left,
-            y: top
-          },
-          width: width
-        }));
-      }
-    }
-  };
-
-  var startDrawing = function startDrawing(sourceId) {
-    var startDrawing = props.startDrawing;
-    var sourceNode = states.filter(function (_ref) {
-      var id = _ref.id;
-      return id === sourceId;
-    })[0];
-    setTempTransition({
-      start: _objectSpread({}, sourceNode.center)
+    tempStates.forEach(function (state) {
+      return drawState(state.position);
     });
-    startDrawing();
-  };
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+    ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+    ctx.fillRect(30, 30, 50, 50);
+  });
+  var dfaFunctions = {
+    onClick: function onClick(clickEvent) {
+      var _getRelativeLeftAndTo = Object(__WEBPACK_IMPORTED_MODULE_4__helpers__["b" /* getRelativeLeftAndTop */])(clickEvent),
+          _getRelativeLeftAndTo2 = _slicedToArray(_getRelativeLeftAndTo, 2),
+          relLeft = _getRelativeLeftAndTo2[0],
+          relTop = _getRelativeLeftAndTo2[1];
 
-  console.log('tempTransition', tempTransition);
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("canvas", _extends({
-    className: 'space'
-  }, spaceFunctions), states.map(function (state) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__State__["a" /* default */], _extends({}, state, {
-      key: state.id,
-      startDrawing: startDrawing
-    }));
-  }), console.log('Math', Math), tempTransition && tempTransition.end && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
-    className: "arrow",
-    style: {
-      height: 10,
-      width: 1,
-      backgroundColor: 'black',
-      position: 'absolute',
-      top: "".concat(tempTransition.start.y * 100, "%"),
-      left: "".concat(tempTransition.start.x * 100, "%"),
-      transformOrigin: 'bottomLeft',
-      transform: "scaleX(".concat(tempTransition.width * (tempTransition.start.x - tempTransition.end.x), ") rotate(").concat(Math.atan(tempTransition.end.y / tempTransition.end.x), "deg)")
+      console.log('relLeft, relTop', relLeft, relTop);
     }
-  }));
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    className: "wrapper"
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("canvas", _extends({
+    width: 1320,
+    height: 900,
+    id: "dfa-constructor",
+    className: 'space'
+  }, dfaFunctions), "Please enable Javascript in your browser"));
 };
 
 DFA.propTypes = {// states: PropTypes.arrayOf({ left: PropTypes.number, top: PropTypes.number }).isRequired
 };
-/* harmony default export */ __webpack_exports__["a"] = (DFA);
+/* harmony default export */ __webpack_exports__["a"] = (DFA); // TEMP
+
+var tempStates = [{
+  symbol: 'A',
+  position: {
+    left: 0.18,
+    top: 0.19
+  }
+}, {
+  symbol: 'B',
+  position: {
+    left: 0.28,
+    top: 0.29
+  }
+}, {
+  symbol: 'V',
+  position: {
+    left: 0.38,
+    top: 0.39
+  }
+}, {
+  symbol: 'C',
+  position: {
+    left: 0.48,
+    top: 0.49
+  }
+}, {
+  symbol: 'D',
+  position: {
+    left: 0.58,
+    top: 0.59
+  }
+}, {
+  symbol: 'K',
+  position: {
+    left: 0.68,
+    top: 0.69
+  }
+}, {
+  symbol: 'S',
+  position: {
+    left: 0.78,
+    top: 0.79
+  }
+}];
 
 /***/ }),
 /* 24 */
@@ -25360,12 +25370,12 @@ var State = function State(props) {
       clickEvent.stopPropagation();
     },
     onMouseMove: function onMouseMove(mouseMoveEvent) {
-      var _getRelativeLeftAndTo = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["c" /* getRelativeLeftAndTop */])(mouseMoveEvent),
+      var _getRelativeLeftAndTo = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["b" /* getRelativeLeftAndTop */])(mouseMoveEvent),
           _getRelativeLeftAndTo2 = _slicedToArray(_getRelativeLeftAndTo, 2),
           left = _getRelativeLeftAndTo2[0],
           top = _getRelativeLeftAndTo2[1];
 
-      setQuarter(Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["b" /* getQuarter */])(left, top));
+      setQuarter(Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* getQuarter */])(left, top));
     },
     onMouseDown: function onMouseDown() {},
     onMouseUp: function onMouseUp() {},
@@ -25397,7 +25407,7 @@ var State = function State(props) {
   }, transitionAdderFunctions), "+"), symbol));
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (State);
+/* unused harmony default export */ var _unused_webpack_default_export = (State);
 
 /***/ }),
 /* 30 */
@@ -25617,7 +25627,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n}\n.app {\n  height: 100vh;\n  width: 100vw;\n  background-color: #B1FA06;\n  font-family: 'Roboto', sans-serif;\n}\n.space {\n  position: relative;\n  background: rgba(0, 0, 0, 0.25);\n  width: 95%;\n  height: 900px;\n  margin: 20px auto 0;\n}\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n}\n.app {\n  height: 100vh;\n  width: 100vw;\n  background-color: #B1FA06;\n  font-family: 'Roboto', sans-serif;\n}\n.wrapper {\n  width: 95%;\n  height: 900px;\n  margin: 20px auto 0;\n}\n.space {\n  position: relative;\n  background: rgba(0, 0, 0, 0.25);\n}\n", ""]);
 
 // exports
 
