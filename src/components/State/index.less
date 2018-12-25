@@ -7,10 +7,19 @@
 .state-wrapper {
   .centerify;
   position: absolute;
-  width: @StateWrapperDim;
-  height: @StateWrapperDim;
+  width: 0;
+  height: 0;
   cursor: pointer;
+  transform: scale(0);
+  transition: .2s all;
 
+  &.active {
+    width: @StateWrapperDim;
+    height: @StateWrapperDim;
+    transform: scale(1);
+    transform-origin: center;
+    transition: .2s all;
+  }
   & .state {
     .centerify;
     position: absolute;
@@ -28,12 +37,12 @@
       .centerify;
       position: absolute;
       visibility: hidden;
-      top: -8px;
       width: @TransitionAdderDim;
       height: @TransitionAdderDim;
       background-color: @DarkGreen;
       border-radius: 50%;
       right: calc(50% - @TransitionAdderDim/2);
+      &:hover {visibility: visible;}
     }
   }
 }

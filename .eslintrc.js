@@ -21,8 +21,11 @@ module.exports = {
     "babel"
   ],
   "rules": {
-    "react/jsx-indent": [2, "tab"],
-    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+    "indent": ["error", "tab"],
+    // "react/jsx-indent": [2, "tab"],
+    "react/jsx-indent-props": [2, "tab"],
+
+    "no-mixed-spaces-and-tabs": ["error", "tabs"],
     "linebreak-style": [ "error", "unix" ],
     "quotes": [ "warn", "single" ],
     "semi": [ "error", "always" ],
@@ -119,7 +122,6 @@ module.exports = {
     "computed-property-spacing": "error",
     "consistent-this": ["error", "that"],
     "eol-last": "error",
-    "indent": ["error", 2],
     "jsx-quotes": ["error", "prefer-single"],
     "key-spacing": ["error", { "beforeColon": false, "mode": "minimum" }],
     "keyword-spacing": "error",
@@ -131,7 +133,6 @@ module.exports = {
     "new-cap": "error",
     "new-parens": "error",
     "no-array-constructor": "error",
-    "no-lonely-if": "error",
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
     "no-new-object": "error",
     "no-spaced-func": "error",
@@ -170,7 +171,6 @@ module.exports = {
     "react/jsx-pascal-case": 0,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 2,
-    "react/jsx-indent-props": [2, "tab"],
     "react/jsx-filename-extension":0,
     "react/destructuring-assignment": "warn",
     "jsx-a11y/no-static-element-interactions": 0,
