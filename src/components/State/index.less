@@ -2,23 +2,31 @@
 
 @StateWrapperDim: 70px;
 @StateDim: 50px;
-@TransitionAdderDim: 20px;
+@TransitionAdderDim: 15px;
 
 .state-wrapper {
+  user-select: none;
   .centerify;
   position: absolute;
   width: 0;
   height: 0;
   cursor: pointer;
   transform: scale(0);
-  transition: .2s all;
+  transition: width .2s, height .2s, transform .2s;
 
   &.active {
     width: @StateWrapperDim;
     height: @StateWrapperDim;
     transform: scale(1);
     transform-origin: center;
-    transition: .2s all;
+    transition: width .2s, height .2s, transform .2s;
+  }
+  &.priority { z-index: 999; }
+
+  &.next-pick:hover .state {
+    & .add-transition, .set-final-state, .del-state, .set-initial-state { left: 18px; top: 18px; }
+    & .symbol { transform: rotate(0); }
+    & .move-icon { transform: rotate(90deg); }
   }
   & .state {
     .centerify;
@@ -31,18 +39,101 @@
     font-size: 18px;
     font-weight: 500;
     &:hover {
-      & .add-transition { visibility: visible;}
+      & .add-transition {
+        top: -18px
+      }
+      & .set-final-state {
+        left: -14px;
+        top: 6px;
+      }
+      & .set-initial-state {
+        top: 42px;
+        left: -6px;
+      }
+      & .del-state {
+        left: 50px;
+        top: 6px;
+      }
+      & .set-transitions {
+        left: 40px;
+        top: 42px;
+      }
+      & .symbol {
+        transform: rotateY(90deg);
+        .transit;
+      }
+      & .move-icon {
+        transform: rotateY(180deg);
+        transition: all .15s;
+        transition-delay: .15s;
+      }
     }
-    & .add-transition {
+    & .add-transition, & .del-state, & .set-final-state, .set-initial-state, .set-transitions {
       .centerify;
       position: absolute;
-      visibility: hidden;
       width: @TransitionAdderDim;
       height: @TransitionAdderDim;
       background-color: @DarkGreen;
       border-radius: 50%;
-      right: calc(50% - @TransitionAdderDim/2);
-      &:hover {visibility: visible;}
+      font-size: 14px;
+      top: 18px;
+      left: 18px;
+      .transit;
+      z-index: -1;
+      &:hover {
+        background: @Black25;
+        color: @White
+      }
+    }
+    & .symbol {
+      width: 100%;
+      height: 100%;
+      .centerify;
+      .transit;
+    }
+    & .move-icon {
+      .centerify;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: @Black25;
+      border-radius: 50%;
+      transform: rotateY(90deg);
+      .transit;
+      // transition-delay: .15s;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      border: 0px solid @Black;
+      .transit;
+    }
+    &::after {
+      content: '↘';
+      z-index: -1;
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-size: 24px;
+      .transit;
+    }
+    &.final {
+      &::before {
+        width: 105%;
+        height: 105%;
+        border: 3px solid @Black;
+        .transit;
+      }
+    }
+    &.initial {
+      &::after {
+        top: -15px;
+        left: -15px;
+        .transit;
+      }
     }
   }
 }

@@ -23,9 +23,9 @@ module.exports = {
   "rules": {
     "indent": ["error", "tab"],
     // "react/jsx-indent": [2, "tab"],
-    "react/jsx-indent-props": [2, "tab"],
+    // "react/jsx-indent-props": [2, "tab"],
 
-    "no-mixed-spaces-and-tabs": ["error", "tabs"],
+    "no-mixed-spaces-and-tabs": 0,
     "linebreak-style": [ "error", "unix" ],
     "quotes": [ "warn", "single" ],
     "semi": [ "error", "always" ],
@@ -126,7 +126,7 @@ module.exports = {
     "key-spacing": ["error", { "beforeColon": false, "mode": "minimum" }],
     "keyword-spacing": "error",
     "max-depth": ["error", 4],
-    "max-len": ["error", 100],
+    "max-len": ["error", {"code": 100, "tabWidth": 2, "ignoreComments": true}],
     "max-nested-callbacks": ["error", 10],
     "max-params": ["error", 6],
     "max-statements-per-line": ["error", { "max": 2 }],
@@ -138,6 +138,12 @@ module.exports = {
     "no-spaced-func": "error",
     "no-trailing-spaces": "error",
     "no-whitespace-before-property": "error",
+    "object-curly-newline": ["error", {
+      "ObjectExpression": { "multiline": true },
+      "ObjectPattern": { "multiline": true },
+      "ImportDeclaration": "never",
+      "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+    }],
     "object-curly-spacing": ["error", "always"],
     "quote-props": ["error", "consistent-as-needed"],
     "space-before-blocks": ["error", "always"],

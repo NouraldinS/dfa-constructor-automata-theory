@@ -5,15 +5,15 @@ import classNames from 'classnames';
 import './index.less';
 
 const tabs = [
-	{ id: 'dfa', text: 'DFA'},
-	{ id: 'tst', text: 'Test Input'},
-	{ id: 'tbl', text: 'Transition Tabel'},
+	{ id: 'dfa', text: 'DFA' },
+	{ id: 'vst', text: 'Visual Test' },
+	{ id: 'tbl', text: 'Transition Tabel' }
 ];
 
 const Tabs = ({ onTabChange, activeTab }) => (
 	<div className='tabs'>
 		{
-			tabs.map(({id, text}) => (
+			tabs.map(({ id, text }) => (
 				<div
 					key={id}
 					className={classNames('tab', activeTab === id && 'active')}

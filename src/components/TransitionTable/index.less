@@ -1,0 +1,48 @@
+@import "../../index.less";
+
+.table-wrapper {
+  width: 95%;
+  min-width: 900px;
+  margin: 0 auto;
+  border: 2px solid #333;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: fit-content 1fr;
+  grid-template-areas: 'table starttofinish';
+
+  & table {
+    grid-area: table;
+    border-collapse: collapse;
+    max-height: 800px;
+    overflow: scroll;
+
+    & td, th {
+      border: 2px solid #555;
+      padding: 8px;
+      text-align: left;
+      font-size: 20px;
+    }
+  }
+  & .start-to-finish {
+    grid-area: starttofinish;
+    padding-top: 30px;
+    & div {
+      padding: 12px;
+      font-size: 18px;
+      font-weight: 500;
+
+      & input {
+        background: rgba(0, 107, 80, 0.7);
+        color: @White;
+        padding: 4px 8px;
+        border: none;
+      }
+      & button {
+        color: @Black;
+        background: @White;
+        padding: 4px 8px;
+        border: none;
+      }
+    }
+  }
+}
