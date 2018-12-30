@@ -35,6 +35,6 @@ To any user:
   + LESS (for CSS)
   + ReactJS + BabelJS (for Javascript)
 
-Note to Mr. Nasser El Masri:
+Note to **Mr. Nasser El Masri**:
   I am a web developer, I hadn't used Java because I do not know how to code in Java. If I had started
   this project in Java I would either have taken weeks or never finished it at all.
