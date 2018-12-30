@@ -4,6 +4,8 @@ By @NoureldeanSaed (Noureldean Saed Swearky)
 
 30/Dec/2018 (That's how the holiday went)
 
+DEMO: [Automata theory project **(Click Here)**](https://noureldeansaed.github.io/dfa-constructor-automata-theory/index.html)
+
 ## Project: Build an Automata builder
 
 ### Project description:
