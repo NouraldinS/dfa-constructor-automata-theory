@@ -21,7 +21,6 @@ const TransitionTable = (props) => {
 
 	const runTest = () => {
 		const solution = testInput(states, transitions, readableLanguage, testValue);
-		console.log('solution', solution);
 		setSolution(solution);
 	};
 	return (

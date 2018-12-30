@@ -28,9 +28,7 @@ const State = (props) => {
 				 getRelativeLeftAndTop(mouseMoveEvent, 40, 'getRoot');
 				modifyState(id, {
 					left: relLeft, top: relTop,
-					center: {
-						x: relCLeft, y: relCTop
-					}
+					center: { x: relCLeft, y: relCTop }
 				});
 			}
 		},
@@ -49,10 +47,9 @@ const State = (props) => {
 			setClassName('active');
 		},
 		onMouseEnter () {
-			if (currentAction === 'drawing_transition') {
-				console.log('Hi there !', symbol);
+			if (currentAction === 'drawing_transition')
 				setClassName(['active', 'next-pick']);
-			}
+
 		}
 	};
 	const transitionAdderFunctions = {
@@ -64,9 +61,7 @@ const State = (props) => {
 	return (
 		<div
 			className={classNames(className, 'state-wrapper', isMoving && 'priority')}
-			style={{
-				top: `${top * 100}%`, left: `${left * 100}%`
-			}}
+			style={{ top: `${top * 100}%`, left: `${left * 100}%` }}
 		>
 			<div
 				className={classNames('state', final && 'final', initial && 'initial')}
@@ -79,15 +74,11 @@ const State = (props) => {
 				<span className='del-state' onClick={() => deleteState(id)}>⨯</span>
 				<span
 					className='set-final-state'
-					onClick={() => modifyState(id, {
-						final: !final
-					})}
+					onClick={() => modifyState(id, { final: !final })}
 				>○</span>
 				<span
 					className='set-initial-state'
-					onClick={() => modifyState(id, {
-						initial: !initial
-					})}
+					onClick={() => modifyState(id, { initial: !initial })}
 				>↘</span>
 				<span
 					className='set-transitions'
