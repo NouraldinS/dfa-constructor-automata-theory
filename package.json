@@ -6,9 +6,9 @@
   "scripts": {
     "dist": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "live-server dist"
+    "watch": "live-server index.html"
   },
-  "author": "Muthu",
+  "author": "NoureldeanSaed",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.6",
